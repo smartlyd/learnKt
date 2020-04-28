@@ -30,28 +30,28 @@ public class MyApp extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-//        File cacheFile = getCacheDir(base);
-//        String internalPath = cacheFile.getAbsolutePath() + File.separator + "app-debug.apk";
-//        Log.e("tag", "路径：" + internalPath + "," + File.separator);
-//        File desFile = new File(internalPath);
-//        try {
-//            if (!desFile.exists()) {
-//                desFile.createNewFile();
-//                copyFiles(this, "app-debug.apk", desFile);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        ConstraintLayoutActivity.CustomDexClassLoader customDexClassLoader =
-//                new ConstraintLayoutActivity.CustomDexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, getClassLoader());
-//        try {
-//            Class<?> aClass = customDexClassLoader.findClass("com.example.liyueda.learnkt.GsonUtil");
-//        } catch (Exception e) {
-//            Log.e(TAG, "err = " + e.getMessage());
-//        }
-//        boolean b = HookClassHelper.hookClassLoader(base, customDexClassLoader);
-//        Log.d(TAG, "hook result = " + b);
-//        Log.d(TAG, "attachBaseContext");
+        File cacheFile = getCacheDir(base);
+        String internalPath = cacheFile.getAbsolutePath() + File.separator + "app-debug.apk";
+        Log.e("tag", "路径：" + internalPath + "," + File.separator);
+        File desFile = new File(internalPath);
+        try {
+            if (!desFile.exists()) {
+                desFile.createNewFile();
+                copyFiles(base, "app-debug.apk", desFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ConstraintLayoutActivity.CustomDexClassLoader customDexClassLoader =
+                new ConstraintLayoutActivity.CustomDexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, getClassLoader());
+        try {
+            Class<?> aClass = customDexClassLoader.loadClass("com.example.leelib.JarTest");
+        } catch (Exception e) {
+            Log.e(TAG, "err = " + e.getMessage());
+        }
+        boolean b = HookClassHelper.hookClassLoader(base, customDexClassLoader);
+        Log.d(TAG, "hook result = " + b);
+        Log.d(TAG, "attachBaseContext");
     }
 
     @Override
@@ -87,7 +87,7 @@ public class MyApp extends Application {
         InputStream in = null;
         OutputStream out = null;
         try {
-            in = context.getApplicationContext().getAssets().open(fileName);
+            in = context.getAssets().open(fileName);
             out = new FileOutputStream(desFile.getAbsolutePath());
             byte[] bytes = new byte[1024];
             int i;

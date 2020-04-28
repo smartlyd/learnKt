@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
+import com.example.leelib.JarTest
 import com.example.liyueda.ConstraintLayoutActivity.CustomDexClassLoader
 import com.example.liyueda.MyApp
 import com.example.liyueda.Util
@@ -27,31 +28,7 @@ class TestClassLoaderActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        var myLoader = classLoader
-
-        val cacheFile = Util.getCacheDir(this)
-        val internalPath =
-            cacheFile.absolutePath + File.separator + "app-debug.apk"
-        Log.e("tag", "路径：" + internalPath + "," + File.separator)
-        val desFile = File(internalPath)
-        try {
-            if (!desFile.exists()) {
-                desFile.createNewFile()
-                //                copyFiles(this, "gson-2.8.6-px.jar", desFile);
-                Util.copyFiles(this, "app-debug.apk", desFile)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        val customDexClassLoader =
-            CustomDexClassLoader(internalPath, cacheFile.absolutePath, null, classLoader)
-        val b = HookClassHelper.hookClassLoader(this.baseContext, customDexClassLoader)
-        Log.d(TAG, "hook result = $b")
-        Log.d(TAG, "attachBaseContext")
-
-        var util = GsonUtil()
-//        customDexClassLoader.findClass("com.example.liyueda.learnkt.GsonUtil")
-        util.print()
-        var a = 1
+        val create = JarTest().create()
+        create.calculate()
     }
 }

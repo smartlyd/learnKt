@@ -19,7 +19,7 @@ class TestClassLoader2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         var mBinding = Activity2TestloaderBinding.inflate(LayoutInflater.from(this), null, false)
         setContentView(mBinding.root)
-        init()
+//        init()
     }
 
     private fun init() {
