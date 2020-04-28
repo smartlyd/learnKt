@@ -1,7 +1,7 @@
 package com.example.liyueda.learnkt
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import com.example.liyueda.learnkt.databinding.Activity2TestloaderBinding
 import com.example.liyueda.learnkt.databinding.ActivityTestloaderBinding
