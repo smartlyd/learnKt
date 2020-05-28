@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import com.example.leelib2.JarTest
 import com.example.liyueda.learnkt.R
 import com.example.liyueda.learnkt.TestClassLoaderActivity
 import com.example.liyueda.learnkt.databinding.ActivityConstraintBinding
@@ -60,19 +61,17 @@ class ConstraintLayoutActivity : AppCompatActivity() {
             var name: String? = name
             var clazz: Class<*>? = null
             Log.d(TAG, "c name = $name")
-            val loadedClass = findLoadedClass(name)
-            Log.d(TAG, "loadedClass = $loadedClass")
             try {
 
                 if (name != null && name.contains("com.example.leelib")) {
-                    name.replace("com.example.leelib", "com.example.leelib2")
+                    name = name.replace("com.example.leelib", "com.example.leelib2")
                 }
                 Log.d(TAG, "super name - " + name)
                 clazz = super.loadClass(name)
             } catch (ex: Exception) {
             }
             Log.d(TAG, "clazz = $clazz")
-            val loadClass = mParentClassLoader?.loadClass(name)
+            val loadClass = clazz?.let { mParentClassLoader?.loadClass(name) }
             Log.d(TAG, "loadClass = $loadClass")
             return clazz ?: loadClass
         }

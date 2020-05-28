@@ -45,7 +45,7 @@ public class MyApp extends Application {
         ConstraintLayoutActivity.CustomDexClassLoader customDexClassLoader =
                 new ConstraintLayoutActivity.CustomDexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, getClassLoader());
         try {
-            Class<?> aClass = customDexClassLoader.loadClass("com.example.leelib.JarTest");
+//            Class<?> aClass = customDexClassLoader.loadClass("com.example.leelib.JarTest");
         } catch (Exception e) {
             Log.e(TAG, "err = " + e.getMessage());
         }

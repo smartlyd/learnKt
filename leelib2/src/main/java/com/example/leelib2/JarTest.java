@@ -10,7 +10,7 @@ import android.util.Log;
  * @date: 2020-04-28
  * @time: 16:11
  */
-public class JarTest {
+public class JarTest extends com.example.leelib.JarTest {
     private static final String TAG = "JarTest";
 
     public JarTest() {

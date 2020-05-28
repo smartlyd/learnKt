@@ -10,6 +10,8 @@ import com.example.liyueda.MyApp
 import com.example.liyueda.Util
 import com.example.liyueda.learnkt.databinding.ActivityTestloaderBinding
 import java.io.File
+import java.lang.Error
+import java.lang.Exception
 
 /**
  * @author:       Lee
@@ -28,7 +30,12 @@ class TestClassLoaderActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val create = JarTest().create()
-        create.calculate()
+        try {
+            JarTest().create().calculate()
+        } catch (e: Exception) {
+            Log.e(TAG, "e = ${e.message}")
+        } catch (e: Error) {
+            Log.e(TAG, "e = ${e.message}")
+        }
     }
 }
