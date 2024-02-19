@@ -15,12 +15,18 @@ fun main() {
         println("list is empty")
     }
     productError()
+    productNPE()
 }
 
 fun productError(){
     val array = arrayOf(1, 2, 3)
     val index = 5
     println(array[index])
+}
+
+fun productNPE(){
+    val name: String? = null
+    println(name!!.length)
 }
 
 fun roundUpToTwoDecimalPlaces(number: Double): String {
