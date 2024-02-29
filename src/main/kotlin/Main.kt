@@ -16,6 +16,7 @@ fun main() {
     }
     productError()
     productNPE()
+    productNPE2()
 }
 
 fun productError(){
@@ -25,6 +26,13 @@ fun productError(){
 }
 
 fun productNPE(){
+    val name: String? = null
+    println(name!!.length)
+}
+fun productNPE2(){
+    val array = arrayOf(1, 2, 3)
+    val index = 5
+    println(array[index])
     val name: String? = null
     println(name!!.length)
 }
